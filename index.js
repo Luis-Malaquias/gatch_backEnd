@@ -16,7 +16,7 @@ app.get('/', function(req, res){
 */
 
 const profile = [
-    {id: 0, name: "Luis", gender : "homem", adult : true},
+    {id: 0, name: "Luis", gender : "homem", adult : "true"},
 ]
 
 const endpoint = "/profiles";
