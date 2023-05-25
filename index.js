@@ -15,56 +15,55 @@ app.get('/', function(req, res){
   Servidor propriamente dito
 */
 
-const profile = [
-    {id: 0, name: "Luis", gender : "homem", adult : "true"},
+const notes = [
+    {id: 0, title: "Meu Primeiro Título", description : "Minha Primeira Descrição"},
+    {id: 1, title: "Meu Segundo Título", description : "Minha Segunda Descrição"}
 ]
 
-const endpoint = "/profiles";
+const endpoint = "/notes";
 
 app.get(endpoint, function(req, res){
-    res.perfil(profiles.filter(Boolean));
+    res.send(notes.filter(Boolean));
 });
 
 app.get(`${endpoint}/:id`, function(req, res){
     const id = req.params.id;
-    const profile = profiles[id];
+    const note = notes[id];
 
-    if (!profile){
+    if (!note){
         res.send("{}");
     } else {
-        res.send(profile);
+        res.send(note);
     }   
 });
 
 app.post(endpoint, (req, res) => {
-    const profile = {
-        id : profiles.length,
-        name : req.body["name"],
-        gender : req.body["gender"],
-	adult : req.body["adult"]
+    const note = {
+        id : notes.length,
+        title : req.body["title"],
+        description : req.body["description"]
     };
-    profiles.push(profile);
+    notes.push(note);
     res.send("1");
 
 });
 
 app.put(`${endpoint}/:id`, (req, res) =>{
     const id = parseInt(req.params.id);
-    const profile = {
+    const note = {
         id : id,
-        name : req.body["name"],
-        gender : req.body["gender"],
-	adult : req.body["adult"]
+        title : req.body["title"],
+        description : req.body["description"]
     };
 
-    profiles[id] = profile;
+    notes[id] = note;
     res.send("1");
 
 });
 
 app.delete(`${endpoint}/:id`, (req, res) => {
     const id = req.params.id;
-    delete profiles[id];
+    delete notes[id];
     res.send("1");
 
 });
