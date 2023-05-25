@@ -15,57 +15,57 @@ app.get('/', function(req, res){
   Servidor propriamente dito
 */
 
-const notes = [
+const profiles = [
     {id: 0, name: "Luis", gender : "Homem", adult : "true"},
     {id: 1, name: "Luiz", gender : "Mulher", adult : true}
 ]
 
-const endpoint = "/notes";
+const endpoint = "/profiles";
 
 app.get(endpoint, function(req, res){
-    res.send(notes.filter(Boolean));
+    res.send(profiles.filter(Boolean));
 });
 
 app.get(`${endpoint}/:id`, function(req, res){
     const id = req.params.id;
-    const note = notes[id];
+    const profile = profiles[id];
 
-    if (!note){
+    if (!profile){
         res.send("{}");
     } else {
-        res.send(note);
+        res.send(profile);
     }   
 });
 
 app.post(endpoint, (req, res) => {
-    const note = {
-        id : notes.length,
+    const profile = {
+        id : profiles.length,
         name : req.body["name"],
         gender : req.body["gender"],
         adult : req.body["adult"]
     };
-    notes.push(note);
+    profiles.push(profile);
     res.send("1");
 
 });
 
 app.put(`${endpoint}/:id`, (req, res) =>{
     const id = parseInt(req.params.id);
-    const note = {
+    const profile = {
         id : id,
         name : req.body["name"],
         gender : req.body["gender"],
         adult : req.body["adult"]
     };
 
-    notes[id] = note;
+    profiles[id] = profile;
     res.send("1");
 
 });
 
 app.delete(`${endpoint}/:id`, (req, res) => {
     const id = req.params.id;
-    delete notes[id];
+    delete profiles[id];
     res.send("1");
 
 });
