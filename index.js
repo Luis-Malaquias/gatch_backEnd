@@ -16,8 +16,8 @@ app.get('/', function(req, res){
 */
 
 const notes = [
-    {id: 0, title: "Meu Primeiro Título", description : "Minha Primeira Descrição"},
-    {id: 1, title: "Meu Segundo Título", description : "Minha Segunda Descrição"}
+    {id: 0, name: "Luis", gender : "Homem", adult : "true"},
+    {id: 1, name: "Luiz", gender : "Mulher", adult : true}
 ]
 
 const endpoint = "/notes";
@@ -40,8 +40,9 @@ app.get(`${endpoint}/:id`, function(req, res){
 app.post(endpoint, (req, res) => {
     const note = {
         id : notes.length,
-        title : req.body["title"],
-        description : req.body["description"]
+        name : req.body["name"],
+        gender : req.body["gender"],
+        adult : req.body["adult"]
     };
     notes.push(note);
     res.send("1");
@@ -52,8 +53,9 @@ app.put(`${endpoint}/:id`, (req, res) =>{
     const id = parseInt(req.params.id);
     const note = {
         id : id,
-        title : req.body["title"],
-        description : req.body["description"]
+        name : req.body["name"],
+        gender : req.body["gender"],
+        adult : req.body["adult"]
     };
 
     notes[id] = note;
