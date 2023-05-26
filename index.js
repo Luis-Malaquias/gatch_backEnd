@@ -16,8 +16,8 @@ app.get('/', function(req, res){
 */
 
 const profiles = [
-    {id: 0, name: "Luis", gender : "Homem", adult : "true"},
-    {id: 1, name: "Luiz", gender : "Mulher", adult : true}
+    {id: 0, name: "Luis", gender : "Homem", adult : true, game: "Minecraft"},
+    {id: 1, name: "Luiz", gender : "Mulher", adult : true, game: "Call of Duty"}
 ]
 
 const endpoint = "/profiles";
@@ -42,7 +42,8 @@ app.post(endpoint, (req, res) => {
         id : profiles.length,
         name : req.body["name"],
         gender : req.body["gender"],
-        adult : req.body["adult"]
+        adult : req.body["adult"],
+        game : req.body["game"]
     };
     profiles.push(profile);
     res.send("1");
@@ -55,7 +56,8 @@ app.put(`${endpoint}/:id`, (req, res) =>{
         id : id,
         name : req.body["name"],
         gender : req.body["gender"],
-        adult : req.body["adult"]
+        adult : req.body["adult"],
+        game : req.body["game"]
     };
 
     profiles[id] = profile;
